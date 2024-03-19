@@ -1,0 +1,89 @@
+COMPILATION
+----------------------------------------
+We used python (3.8.3) and  Gurobi (9.5.1) to implement our algorithms. Our implementation was tested on Windows 10.
+
+PREREQUISITES
+----------------------------------------
+Libraries:
+bitstring==3.1.9
+cfractions==2.0.1
+Cython==0.29.30
+gurobipy==9.5.1
+joblib==1.1.0
+mmh3==3.0.0
+more-itertools==8.13.0
+munkres==1.1.4
+networkx==2.8.2
+numpy==1.22.4
+pandas==1.4.2
+python-dateutil==2.8.2
+pytz==2022.1
+scikit-learn==1.1.1
+scipy==1.8.1
+six==1.16.0
+sklearn==0.0
+threadpoolctl==3.1.0
+
+DATA INFORMATION
+---------------------------------------
+All data are included in the folder "data". 
+For each dataset (except WOC), we created 5 sequences (ego_list_1.pkl...ego_list_5.pkl).
+Each sequence has a ground truth (label_1.txt...label_5.txt)
+We also include the raw data (temporal graphs) from which we constructed the ego-network sequences. 
+
+HOW TO RUN SEGMENTATION ALGORITHMS
+----------------------------------------
+
+The implemented algorithms are 
+DP_EXACT_SC for DP-EXACT_{SC} (D-ESC)	      [Dynamic programming and EXACT-SC] 	
+DP_EXACT_SCUB for DP-EXACT-SC_{UB} (D-ESC_UB) [Dynamic programming and EXACT-SC_UB] 
+DP_G_SCUB for DP-GSC_{UB} (D-GSC_UB)	      [Dynamic programming and GREEDY-SC_UB] 	
+TD_EXACT_SCUB for TD_EXACT-SC{UB} (T-ESC_UB)  [Top-down and EXACT-SC_UB]
+TD_G_SCUB for TD-GSC_{UB} (T-GSC_UB)          [Top-down and GREEDY-SC_UB]
+TD_HEU for TD-HEU (T-HEU)	              [Top-down and Heuristic without sketces]
+TD_HEUS for TD-HEU_{S} (T-HEU_S)      	      [Top-down and Heuristic with sketces]
+
+Any of these algorithms can be executed with: 
+
+python Program_Name.py ./data/Data_name/ego_list_1.pkl ./data/Data_name/Output.txt  ./data/Data_name/label_1.txt k
+
+-- Program_name.py is the name of the algorithm. It can be DP_EXACT_SC, DP_EXACT_SCUB, DP_G_SCUB, TD_EXACT_SCUB, TD_G_SCUB, TD_HEU, or TD_HEUS
+-- ./data/Data_name is the path. Data_name can be DBLP, EP, FB, SE, SO, WIKI, or WOC.
+-- ego_list_1.pk1 is the first ego-network sequence. Instead of 1, it could be 2,3,4, or 5 for the other ego-network sequences.
+-- Output.txt corresponds to the output. The output is displayed on the screen and includes runtime of algorithm, segmeatation results, segmeatation performances (ACC, NMI, F score) and the summary graph of each segment. 
+-- label_1.txt is the file containing the ground truth for the first ego-network sequences. Instead of 1, it could be 2,3,4, or 5 for the 
+ground truth of the other ego-network sequences.
+-- k is the desired number of segments
+
+Example 1:
+python DP_G_SCUB.py ./data/dblp/ego_list_1.pkl ./data/dblp/Output.txt  ./data/dblp/label_1.txt 5
+
+Example 2: 
+To execute DP_EXACT_SC on the toy data in Fig1 of our paper:
+python DP_EXACT_SC.py 
+
+HOW TO RUN SC ALGORITHMS
+----------------------------------------
+First, please go to SC folder.
+
+The implemented algorithms are 
+EXACT_SC for EXACT-SC  
+EXACT_SCUB for EXACT-SC_UB
+G_SCUB for GREEDY-SC_UB
+HEU for Heuristic without sketces
+HEUS for Heuristic with sketces
+JMA for 2-approximation algorithm 
+
+Any of these algorithms(except EXACT_SC ) can be executed with: 
+
+python Program_Name.py ../data/Data_name/ego_list_1.pkl 
+
+For EXACT_SC, please run:
+python EXACT_SC.py
+
+The source codes of the methods we compare against
+----------------------------------------
+COPOD: https://github.com/winstonll/COPOD
+ECOD: https://github.com/yzhao062/pyod/blob/master/pyod/models/ecod.py
+ROD: https://codeocean.com/capsule/2686787/tree/v2
+SNAPNETS: http://github.com/SorourAmiri/SnapNETS

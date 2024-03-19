@@ -1,0 +1,94 @@
+COMPILATION
+----------------------------------------
+We used python (3.8.3) and  Gurobi (9.5.1) to implement our algorithms. Our implementation was tested on Windows 10.
+
+PREREQUISITES
+----------------------------------------
+Libraries:
+bitstring==3.1.9
+cfractions==2.0.1
+Cython==0.29.30
+gurobipy==9.5.1
+joblib==1.1.0
+mmh3==3.0.0
+more-itertools==8.13.0
+munkres==1.1.4
+networkx==2.8.2
+numpy==1.22.4
+pandas==1.4.2
+python-dateutil==2.8.2
+pytz==2022.1
+scikit-learn==1.1.1
+scipy==1.8.1
+six==1.16.0
+sklearn==0.0
+threadpoolctl==3.1.0
+
+DATA INFORMATION
+---------------------------------------
+All data are included in the folder "data". 
+For each dataset, we created 5 sequences (ego_list_1.pkl...ego_list_5.pkl).
+Each sequence has a ground truth (label_1.txt...label_5.txt)
+
+HOW TO RUN SEGMENTATION ALGORITHMS
+----------------------------------------
+
+The implemented algorithms are 
+DP_EXACT_WSC		[Dynamic programming and EXACT-WSC] 	
+DP_GWSC  		[Dynamic programming and GREEDY-WSC]
+DP_GWSC_d 		[Dynamic programming and GREEDY-WSC_d]  	
+DP_GWSC_q 	      	[Dynamic programming and GREEDY-WSC_q]
+TD_GWSC   		[Top-down and GREEDY-WSC]
+TD_GWSC_d        	[Top-down and GREEDY-WSC_d] 
+TD_GWSC_q              	[Top-down and GREEDY-WSC_q]
+
+
+DP_EXACT_WSC, DP_GWSC and TD_GWSC can be executed with: 
+
+python Program_Name.py ./data/Data_name/ego_list_1.pkl ./data/Data_name/Output.txt  ./data/Data_name/label_1.txt k    
+
+DP_GWSC_d, DP_GWSC_q, TD_GWSC_d and TD_GWSC_q can be executed with:
+
+python Program_Name.py ./data/Data_name/ego_list_1.pkl ./data/Data_name/Output.txt  ./data/Data_name/label_1.txt k q
+
+-- Program_name.py is the name of the algorithm. It can be DP_EXACT_WSC, DP_GWSC, DP_GWSC_d, DP_GWSC_q, TD_GWSC, TD_GWSC_d, or TD_GWSC_q
+-- ./data/Data_name is the path. Data_name can be DBLP_M, MATH, or MATH_2.
+-- ego_list_1.pk1 is the first ego-network sequence. Instead of 1, it could be 2,3,4, or 5 for the other ego-network sequences.
+-- Output.txt corresponds to the output. The output is displayed on the screen and includes runtime of algorithm, segmeatation results, segmeatation performances (ACC, NMI, F score) and the summary graph of each segment. 
+-- label_1.txt is the file containing the ground truth for the first ego-network sequences. Instead of 1, it could be 2,3,4, or 5 for the 
+ground truth of the other ego-network sequences.
+-- k is the desired number of segments
+-- q is the number of elements of F_r
+
+Example 1:
+python DP_GWSC_q.py ./data/DBLP_M/ego_list_1.pkl ./data/DBLP_M/Output.txt  ./data/DBLP_M/label_1.txt 5 5
+
+Example 2: 
+To execute DP_EXACT_SC on the toy data in Fig2ab of our paper:
+python DP_EXACT_WSC.py 
+
+HOW TO RUN WSC ALGORITHMS
+----------------------------------------
+First, please go to WSC folder.
+
+The implemented algorithms are 
+EXACT_WSC 
+EXACT_WSCUB 
+GREEDY_WSC 
+GREEDY_WSC_d 
+GREEDY_WSC_q 
+WJMA
+
+Any of these algorithms(except EXACT_SC ) can be executed with: 
+
+python Program_Name.py ../data/Data_name/ego_list_1.pkl 
+
+For EXACT_WSC, please run:
+python EXACT_WSC.py
+
+The source codes of the methods we compare against
+----------------------------------------
+COPOD: https://github.com/winstonll/COPOD
+ECOD: https://github.com/yzhao062/pyod/blob/master/pyod/models/ecod.py
+ROD: https://codeocean.com/capsule/2686787/tree/v2
+SNAPNETS: http://github.com/SorourAmiri/SnapNETS
