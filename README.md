@@ -7,6 +7,12 @@ DOI: 10.1109/TKDE.2024.3373712
 
 Haodi Zhong, Grigorios Loukides, Alessio Conte and Solon P. Pissis
 
+## Running the code
+
+For the SC problem and its corresponding algorithms, please refer to the JM_CODE folder.
+
+For the WSC problem and its corresponding algorithms, please refer to the WJM_CODE folder.
+
 ## Author of code
 
 Haodi Zhong
