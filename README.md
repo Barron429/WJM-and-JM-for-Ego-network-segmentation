@@ -3,7 +3,7 @@ This page contains the source code of the paper
 
 Ego-Network Segmentation via (Weighted) Jaccard Median, TKDE, 2024
 
-DOI: 10.1109/TKDE.2024.3373712
+DOI: [10.1109/TKDE.2024.3373712](https://ieeexplore.ieee.org/abstract/document/10460162)
 
 Haodi Zhong, Grigorios Loukides, Alessio Conte and Solon P. Pissis
 
