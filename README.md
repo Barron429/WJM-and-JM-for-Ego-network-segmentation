@@ -1,5 +1,5 @@
 # Corresponding paper
-This project corresponds to the paper
+This page contains the source code of the paper
 
 Ego-Network Segmentation via (Weighted) Jaccard Median, TKDE, 2024
 
